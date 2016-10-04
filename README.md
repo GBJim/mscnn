@@ -1,3 +1,5 @@
+#This is a fork from Zhaowei's MSCNN, it contains testing scripts for Caltech Pedestrian dataset writen in Python
+
 ## A Unified Multi-scale Deep Convolutional Neural Network for Fast Object Detection
 
 by Zhaowei Cai, Quanfu Fan, Rogerio Feris and Nuno Vasconcelos

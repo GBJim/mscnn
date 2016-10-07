@@ -65,6 +65,14 @@ def parse_args():
                         help='model to test',
                         default='examples/caltech/mscnn-7s-720-pretrained/mscnn_caltech_train_2nd_iter_20000.caffemodel'\
                         , type=str)
+
+    parser.add_argument('--do_bb_norm', dest='do_bb_norm',help="Whether to denormalize the box with std or means.\
+    Author's pretrained model does not need this. ",
+                default=True , type=bool)
+    
+    
+    parser.add_argument('--height', dest='height',help="Decide the resizing height of input model and images",
+                default=720 , type=int)
     
     parser.add_argument('--detection', dest='dt_name',  help='model to test', default='detection_1', type=str)
     
@@ -110,6 +118,17 @@ def im_normalize(im, target_size, mu=[104, 117, 123] ):
 
 
 def bbox_denormalize(bbox_pred, proposals, ratios, orgW, orgH):
+    
+    bbox_means = [0, 0, 0, 0]
+    bbox_stds = [0.1, 0.1, 0.2, 0.2]
+
+    if args.do_bb_norm:
+        bbox_pred *= bbox_stds 
+        bbox_pred += bbox_means
+
+
+    
+    
     ctr_x = proposals[:,0]+0.5*proposals[:,2]
     ctr_y = proposals[:,1]+0.5*proposals[:,3]
 
@@ -234,9 +253,14 @@ def write_caltech_results_file(net):
  
     
     def detect(file_path,  NMS_THRESH = 0.3):
-        
+        if args.height == 720:
+            target_size = (960, 720)
+        elif args.height == 480:
+            target_size = (640, 480)
+            
+     
 
-        confidence, bboxes = im_detect(net, file_path)
+        confidence, bboxes = im_detect(net, file_path, target_size)
     
        
         dets = np.hstack((bboxes,confidence[:, np.newaxis])).astype(np.float32)
@@ -287,8 +311,8 @@ def write_caltech_results_file(net):
                 y = bbox[1] 
                 width = bbox[2] 
                 length =  bbox[3]
-                #if score*100 > 70:
-                    #print("{},{},{},{},{},{}\n".format(frame_num, x, y, width, length, score*100))
+                if score*100 > 70:
+                    print("{},{},{},{},{},{}\n".format(frame_num, x, y, width, length, score*100))
                     
                 w.write("{},{},{},{},{},{}\n".format(frame_num, x, y, width, length, score*100))
 

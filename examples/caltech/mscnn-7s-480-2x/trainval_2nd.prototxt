@@ -21,7 +21,7 @@ layer {
     mean_value: 123
   }
   image_gt_data_param {
-    source: "../../../data/caltech/window_files/mscnn_window_file_caltech_train.txt"
+    source: "../../../data/caltech/window_files/10X_mscnn_window_file_caltech_train.txt"
     batch_size: 4
     coord_num: 4
     resize_width: 640
@@ -80,7 +80,7 @@ layer {
     mean_value: 123
   }
   image_gt_data_param {
-    source: "../../../data/caltech/window_files/mscnn_window_file_caltech_test.txt"
+    source: "../../../data/caltech/window_files/1X_mscnn_window_file_caltech_test.txt"
     batch_size: 2
     coord_num: 4
     resize_width: 640

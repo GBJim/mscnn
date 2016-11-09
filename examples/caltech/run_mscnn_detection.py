@@ -58,10 +58,10 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Test a MSCNN network')
     parser.add_argument('--gpu', dest='gpu_id', help='GPU id to use',
                         default=0, type=int)
-    parser.add_argument('--def', dest='prototxt',
+    parser.add_argument('--net', dest='prototxt',
                         help='prototxt file defining the network',
                         default='examples/caltech/mscnn-7s-720-pretrained/mscnn_deploy.prototxt', type=str)
-    parser.add_argument('--net', dest='caffemodel',
+    parser.add_argument('--weights', dest='caffemodel',
                         help='model to test',
                         default='examples/caltech/mscnn-7s-720-pretrained/mscnn_caltech_train_2nd_iter_20000.caffemodel'\
                         , type=str)

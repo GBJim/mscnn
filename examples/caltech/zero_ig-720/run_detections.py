@@ -46,7 +46,7 @@ class Timer(object):
 
 
 
-CALTECH_DATA_PATH = "/root/caltech/data/"
+CALTECH_DATA_PATH = "/root/data/caltech-pedestrian-dataset-converter/data/"
 IMG_PATH = os.path.join(CALTECH_DATA_PATH + "images")
 
 

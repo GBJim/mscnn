@@ -10,6 +10,6 @@ max_iter: 25000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 10000
-snapshot_prefix: "mscnn_caltech_train_2nd"
+snapshot_prefix: "mscnn_CS_train_2nd"
 solver_mode: GPU
 random_seed: 1706
